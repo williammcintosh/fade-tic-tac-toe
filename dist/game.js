@@ -50,7 +50,11 @@ function render() {
     cell.innerHTML = mark ? `<span class="mark">${mark === 'X' ? '×' : '○'}</span>` : '';
     cell.setAttribute('aria-label', `Square ${i+1}, ${mark ? (mark === 'X' ? 'X' : 'O') : 'empty'}`);
   });
-  if (!locked && histories[current].length === 3) boardEl.children[histories[current][0]].classList.add('oldest');
+  if (!locked && histories[current].length === 3) {
+    const fadingCell = boardEl.children[histories[current][0]];
+    fadingCell.classList.add('oldest');
+    fadingCell.setAttribute('aria-label', `${fadingCell.getAttribute('aria-label')}, fades on your next move`);
+  }
   cardX.classList.toggle('active', !locked && current === 'X');
   cardO.classList.toggle('active', !locked && current === 'O');
   if (!locked) statusEl.innerHTML = `<b style="color:var(--${current.toLowerCase()})">PLAYER ${current === 'X' ? '1' : '2'}</b> — YOUR TURN`;
