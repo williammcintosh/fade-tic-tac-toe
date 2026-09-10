@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#07111f" />
+  <meta name="description" content="A fast two-player tic-tac-toe game where your oldest mark vanishes when you place a fourth." />
+  <title>Fade — Disappearing Tic-Tac-Toe</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">DISAPPEARING TIC-TAC-TOE</p>
+        <h1>FADE<span>.</span></h1>
+      </div>
+      <button class="icon-button" id="rulesButton" aria-label="How to play">?</button>
+    </header>
+
+    <section class="scoreboard" aria-label="Score">
+      <div class="player player-x active" id="cardX">
+        <span class="player-mark">×</span>
+        <span class="player-label">PLAYER 1</span>
+        <strong id="scoreX">0</strong>
+      </div>
+      <div class="round-count"><span>ROUND</span><strong id="round">1</strong></div>
+      <div class="player player-o" id="cardO">
+        <span class="player-mark">○</span>
+        <span class="player-label">PLAYER 2</span>
+        <strong id="scoreO">0</strong>
+      </div>
+    </section>
+
+    <section class="play-area">
+      <div class="status" id="status" aria-live="polite"><b>PLAYER 1</b> — YOUR TURN</div>
+      <div class="board" id="board" role="grid" aria-label="Tic-tac-toe board"></div>
+      <p class="hint"><span class="hint-icon">↻</span> Place a 4th mark and your oldest one fades away</p>
+    </section>
+
+    <button class="reset-button" id="resetButton"><span>↻</span> NEW ROUND</button>
+  </main>
+
+  <dialog id="rulesDialog">
+    <div class="dialog-inner">
+      <button class="dialog-close" id="closeRules" aria-label="Close rules">×</button>
+      <p class="eyebrow">HOW TO PLAY</p>
+      <h2>Three marks. Keep moving.</h2>
+      <p>Take turns placing × and ○. Make three in a row to win.</p>
+      <p>Once you already have three marks, placing another makes your oldest mark disappear. Its faint pulse warns you before it goes.</p>
+      <button class="got-it" id="gotIt">GOT IT</button>
+    </div>
+  </dialog>
+
+  <div class="celebration" id="celebration" aria-hidden="true"></div>
+  <script src="game.js"></script>
+</body>
+</html>
