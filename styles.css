@@ -30,7 +30,9 @@ h1 span { color:var(--x); }
 .cell:active:not(:disabled) { transform:scale(.95); }
 .cell.x { color:var(--x); text-shadow:0 0 23px rgba(255,75,125,.38); }
 .cell.o { color:var(--o); text-shadow:0 0 23px rgba(53,217,255,.34); }
-.cell.oldest { animation:warning 1.45s ease-in-out infinite; }
+.cell.oldest { position:relative; border-style:dashed; border-color:color-mix(in srgb,currentColor 62%,#24435d); }
+.cell.oldest .mark { animation:fadeWarning 1.65s ease-in-out infinite; }
+.cell.oldest::after { content:"FADES NEXT"; position:absolute; left:50%; bottom:9px; transform:translateX(-50%); color:currentColor; font:700 clamp(.48rem,2.4vw,.62rem)/1 'DM Sans'; letter-spacing:.13em; white-space:nowrap; opacity:.88; animation:labelWarning 1.65s ease-in-out infinite; }
 .cell.win { background:#162b40; animation:winPulse .8s ease-in-out infinite alternate; border-color:currentColor; }
 .mark { display:block; animation:pop .23s cubic-bezier(.2,1.6,.4,1); }
 .hint { margin:18px 0 0; text-align:center; color:#637c91; font-size:.76rem; }
@@ -47,7 +49,8 @@ dialog::backdrop { background:rgba(2,8,15,.76); backdrop-filter:blur(5px); }
 .celebration { position:fixed; inset:0; pointer-events:none; overflow:hidden; }
 .spark { position:absolute; width:7px; height:16px; border-radius:4px; animation:fall 1.3s ease-in forwards; }
 @keyframes pop { from{transform:scale(.25) rotate(-12deg);opacity:0} to{transform:scale(1);opacity:1} }
-@keyframes warning { 50%{opacity:.32;filter:saturate(.4)} }
+@keyframes fadeWarning { 0%,100%{opacity:.72;filter:saturate(.75);transform:scale(.96)} 50%{opacity:.12;filter:saturate(.15);transform:scale(.88)} }
+@keyframes labelWarning { 0%,100%{opacity:.9} 50%{opacity:.35} }
 @keyframes winPulse { to{filter:brightness(1.32);transform:scale(.98)} }
 @keyframes fall { from{transform:translateY(-10vh) rotate(0);opacity:1} to{transform:translateY(105vh) rotate(600deg);opacity:0} }
 @media (min-width:700px) { .game-shell{padding-top:38px;padding-bottom:34px}.play-area{padding-top:30px}.board{gap:12px}.cell{border-radius:20px} }
